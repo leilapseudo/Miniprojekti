@@ -1,10 +1,34 @@
 <div>
-  <h3>Add a book reference</h3>
+  <h1>Add a {{reference.type}} reference</h1>
   <form method="post">
-    {for item in reference.mandatory}
-        <label name="{{item}}" for {{item}}>
-            <input name="{{item}}"">
-        </label>
+    <h3>Mandatory fields</h3>
+    {% for item in reference.fields["required"] %}
+        <div>
+            <label name="{{item}}" for="{{item}}">
+                {{item}}:
+                <input name="{{item}}" id="{{item}}" required>
+            </label>
+        </div>
+    {% endfor %}
+    <h3>Optional fields</h3>
+    {% for item in reference.fields["optional"] %}
+        <div>
+            <label name="{{item}}" for="{{item}}">
+                {{item}}:
+                <input name="{{item}}" id="{{item}}" required>
+            </label>
+        </div>
+    {% endfor %}
+    <h3>Non-standard fields</h3>
+    {% for item in reference.fields["non_standard"] %}
+        <div>
+            <label name="{{item}}" for="{{item}}">
+                {{item}}:
+                <input name="{{item}}" id="{{item}}" required>
+            </label>
+        </div>
+    {% endfor %}
+    
     <button>Add a reference</button>
   </form>
 </div>

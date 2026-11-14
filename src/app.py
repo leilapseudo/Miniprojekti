@@ -6,6 +6,7 @@ from config import app, test_env
 @app.route("/")
 def index():
     book = Book()
+    print(book.fields["required"])
     return render_template("index.html", reference = book) 
 
 # testausta varten oleva reitti
