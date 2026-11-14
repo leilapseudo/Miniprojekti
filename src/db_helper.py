@@ -3,10 +3,7 @@ from sqlalchemy import text
 import os
 
 def reset_db():
-  print(f"Clearing contents from table todos")
-  sql = text(f"DELETE FROM todos")
-  db.session.execute(sql)
-  db.session.commit()
+  print(f"Clearing contents from table references")
 
 def tables():
   """Returns all table names from the database"""
