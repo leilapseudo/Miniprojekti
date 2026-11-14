@@ -1,10 +1,12 @@
 from flask import redirect, render_template, request, jsonify, flash
+from entities.reference import Reference, Book
 from db_helper import reset_db
 from config import app, test_env
 
 @app.route("/")
 def index():
-    return render_template("index.html") 
+    book = Book()
+    return render_template("index.html", reference = book) 
 
 # testausta varten oleva reitti
 if test_env:

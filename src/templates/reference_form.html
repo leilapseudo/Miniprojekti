@@ -1,0 +1,10 @@
+<div>
+  <h3>Add a book reference</h3>
+  <form method="post">
+    {for item in reference.mandatory}
+        <label name="{{item}}" for {{item}}>
+            <input name="{{item}}"">
+        </label>
+    <button>Add a reference</button>
+  </form>
+</div>
