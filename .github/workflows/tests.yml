@@ -25,10 +25,10 @@ jobs:
       - name: Asenna riippuvuudet
         run: |
           python -m pip install --upgrade pip
-          pip install flask flask-sqlalchemy 
-          python-dotenv getenv requests pytest
-          robotframework robotframework-browser 
-          robotframework-browser-batteries
+          pip install flask flask-sqlalchemy \
+            python-dotenv getenv requests pytest \
+            robotframework robotframework-browser \
+            robotframework-browser-batteries
 
       - name: Yksikkötestit
         run: pytest
