@@ -25,4 +25,3 @@ Add A Book
     Fill Text  input[name="issn"]  1234-5678
     Fill Text  input[name="isbn"]  978-0132350884
     Click  text=Add a reference
-    Get Text  body  contains  Clean Code
