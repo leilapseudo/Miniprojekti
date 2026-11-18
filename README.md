@@ -11,4 +11,4 @@
 
 Definition of done: *ennen pushia koodi toimii ja on testattu ei turhaa koodia projekti on semmosessa tilassa, että sitä voi jatkaa, ei tarvitse käyttää aikaa korjailuun* 
 
-OKD-klusteri: <tähän linkki OKD-klusterilla toimivaan sovellukseen>
+OKD-klusteri: [Linkki sovellukseen](https://route-ohjelmistotuotanto-lahiopetus-2026-24.ext.okd-cs-test-0.k8s.cs.helsinki.fi/)
