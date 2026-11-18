@@ -12,6 +12,6 @@ class Reference:
 class Book(Reference):
     def __init__(self):
         required = ['author', 'editor', 'title', 'publisher', 'year']
-        optional = ['year', 'volume', 'number', 'pages', 'month', 'note']
+        optional = ['volume', 'number', 'pages', 'month', 'note']
         non_standard = ['doi', 'issn', 'isbn']
         super().__init__(required, optional, non_standard, "book")
