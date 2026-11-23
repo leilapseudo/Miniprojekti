@@ -1,6 +1,5 @@
 from config import db
 from sqlalchemy import text
-from entities.reference import Book
 
 def get_books():
     res = db.session.execute(text("SELECT * FROM books"))
@@ -13,6 +12,7 @@ def get_inproceedings():
 def get_references():
     list_of_all_refs = []
     list_of_all_refs.append(get_books())    
+    return list_of_all_refs
 
 def add_reference(reference):
     type = "book"
@@ -23,9 +23,4 @@ def add_reference(reference):
     add_book(reference, last_id)    
 
 def add_book(reference):
-    pass
-    
-
-
-def debug():
     pass

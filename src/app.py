@@ -23,6 +23,15 @@ def new_reference():
     refs.append(ref)     
     return redirect("/")
 
+@app.route("/references/<int:id>", methods=["GET", "PUT"])
+def update_reference():
+    pass
+
+@app.route("/references/<int:id>", methods=["DELETE"])
+def delete_reference():
+    pass
+
+
 
 # testausta varten oleva reitti
 if test_env:
