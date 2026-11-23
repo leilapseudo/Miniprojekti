@@ -22,7 +22,7 @@ def test_reference_fields_dict_groups_fields():
 
 def test_book_optional_fields():
     book = Book()
-    
+
     for field in ["volume", "number", "pages", "month", "note"]:
         assert field in book.fields["optional"]
 

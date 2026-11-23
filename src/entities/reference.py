@@ -1,10 +1,10 @@
 #Each field is a list of strings corresponding to the possible fields of a bibtex entry
 class Reference:
-    def __init__(self, required, optional, non_standard, type):
+    def __init__(self, required, optional, non_standard, ref_type):
         self.required = required
         self.optional = optional
         self.non_standard = non_standard
-        self.type = type
+        self.type = ref_type
         self.fields = {"required": self.required,
         "optional": self.optional, "non_standard": self.non_standard}
 
