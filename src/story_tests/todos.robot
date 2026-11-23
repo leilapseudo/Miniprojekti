@@ -2,6 +2,7 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
+Test Setup  Reset References
 
 *** Test Cases ***
 Front Page Opens
@@ -14,7 +15,7 @@ Add A Book
     Fill Text  input[name="editor"]  Prentice Hall
     Fill Text  input[name="title"]  Clean Code
     Fill Text  input[name="publisher"]  Pearson
-    Fill Text  input[name="year"] 2008
+    Fill Text  input[name="year"]  2008
     Fill Text  input[name="volume"]  1
     Fill Text  input[name="number"]  1
     Fill Text  input[name="pages"]  464
@@ -24,3 +25,4 @@ Add A Book
     Fill Text  input[name="issn"]  1234-5678
     Fill Text  input[name="isbn"]  978-0132350884
     Click  text=Add a reference
+    Get Text  ul  contains  Clean Code
