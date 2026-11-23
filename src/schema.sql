@@ -15,7 +15,10 @@ CREATE TABLE books (
     number INTEGER,
     pages TEXT,
     month TEXT,
-    note TEXT
+    note TEXT,
+    doi TEXT, 
+    issn TEXT,
+    isbn TEXT
 );
 
 CREATE TABLE inproceedings (

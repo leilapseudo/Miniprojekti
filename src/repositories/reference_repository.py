@@ -1,5 +1,6 @@
-from config import db
 from sqlalchemy import text
+from config import db
+from entities.reference import Book
 
 def get_books():
     res = db.session.execute(text("SELECT * FROM books"))
@@ -11,16 +12,37 @@ def get_inproceedings():
 
 def get_references():
     list_of_all_refs = []
-    list_of_all_refs.append(get_books())    
+    list_of_all_refs.append(get_books())
     return list_of_all_refs
 
 def add_reference(reference):
-    type = "book"
-    #Implement support for inproceeding, article etc by matching with type of ref requested later   
-    query = (text("INSERT INTO refs (type) VALUES (:type) "))
-    query_res = db.session.execute(query, {"type": type})
+    ref_type = "book"
+    #Implement support for inproceeding, article etc by matching with type of ref requested later
+    #Could add a timestamp created_at in the future, that would be common across all references
+    query = text("INSERT INTO refs (type) VALUES (:type) ")
+    query_res = db.session.execute(query, {"type": ref_type})
     last_id = query_res.lastrowid
-    add_book(reference, last_id)    
+    if ref_type == "book":
+        add_book(reference, last_id)
+    db.session.commit()
 
-def add_book(reference):
-    pass
+def add_book(reference, book_id):
+    #This long check is needed to protect against SQL injection
+    #because sql doesn't let us populate columns dynamically
+    allowed_fields = []
+    for field in Book().fields["required"]:
+        allowed_fields.append(field)
+    for field in Book().fields["optional"]:
+        allowed_fields.append(field)
+    for field in Book().fields["non_standard"]:
+        allowed_fields.append(field)
+    if not all(field in allowed_fields for field in reference.keys()):
+        print("Invalid fields")
+
+    values = dict(reference.items())
+    values["viite_id"] = book_id
+    columns = list(values)
+    column_names = ", ".join(columns)
+    value_parameters = ", ".join(f":{column}" for column in columns)
+    query = text(f"INSERT INTO books ({column_names}) VALUES ({value_parameters})")
+    db.session.execute(query, values)

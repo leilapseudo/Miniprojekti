@@ -12,15 +12,16 @@ def index():
     print(book_refs)
     book = Book()
     print(book.fields["required"])
-    return render_template("index.html", reference = book, refs = refs)
+    return render_template("index.html", reference = book, refs = book_refs)
 
 @app.route("/references", methods=["POST"])
 def new_reference():
+    reference_repository.add_reference(request.form)
     ref = ""
     for item in request.form.items():
         ref = ref + item[0] + ": " + item[1] + ",  "
 
-    refs.append(ref)     
+    refs.append(ref)
     return redirect("/")
 
 @app.route("/references/<int:id>", methods=["GET", "PUT"])
