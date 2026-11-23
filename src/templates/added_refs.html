@@ -1,7 +1,7 @@
 <div>
-    <h3>
-        refs here
-    </h3>
+    {% if refs|length == 0 %}
+    <h3>No references have been added yet</h3>
+    {% elif refs|length > 0 %}
     <ul>
         {% for item in refs%}
         <li>
@@ -9,4 +9,5 @@
         </li>
         {% endfor %}
     </ul>
+    {% endif %}
 </div>

@@ -1,7 +1,7 @@
 CREATE TABLE refs (
     id INTEGER PRIMARY KEY,
     citekey TEXT UNIQUE,
-    type TEXT NOT NULL,
+    type TEXT NOT NULL
    );
 
 CREATE TABLE books (

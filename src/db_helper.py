@@ -33,7 +33,7 @@ def setup_db():
   # Read schema from schema.sql file
   schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql')
   with open(schema_path, 'r') as f:
-    schema_sql = f.read()
+     schema_sql = f.read()
   
   raw = db.engine.raw_connection()
   try:
