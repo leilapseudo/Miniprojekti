@@ -14,8 +14,7 @@ Add A Book
     Fill Text  input[name="editor"]  Prentice Hall
     Fill Text  input[name="title"]  Clean Code
     Fill Text  input[name="publisher"]  Pearson
-    Fill Text  input[name="year"] >> nth=0  2008
-    Fill Text  input[name="year"] >> nth=1  2008
+    Fill Text  input[name="year"] 2008
     Fill Text  input[name="volume"]  1
     Fill Text  input[name="number"]  1
     Fill Text  input[name="pages"]  464
