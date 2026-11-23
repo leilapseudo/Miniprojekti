@@ -5,7 +5,8 @@
     <ul>
         {% for item in refs%}
         <li>
-            {{item}}
+            <input type="checkbox" name={{item}} />
+            <label for={{item}}>{{item}}</label>
         </li>
         {% endfor %}
     </ul>

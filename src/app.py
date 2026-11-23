@@ -25,8 +25,18 @@ def new_reference():
     return redirect("/")
 
 @app.route("/references/<int:id>", methods=["GET", "PUT"])
-def update_reference():
-    pass
+def update_reference(id):
+    if request.method == "GET":
+        book = reference_repository.get_book(id)
+        if book is None:
+            abort(404)
+        return render_template("edit_book.html", book=book)
+
+    data = request.get_json(silent=True)
+    if not data:
+        abort(400)
+    reference_repository.update_book(id, data)
+    return "", 204
 
 @app.route("/references/<int:id>", methods=["DELETE"])
 def delete_reference():
