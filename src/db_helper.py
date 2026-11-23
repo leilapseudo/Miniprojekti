@@ -17,7 +17,6 @@ def tables():
     result = db.session.execute(sql)
     return [row[0] for row in result.fetchall()]
 
-
 def setup_db():
     """
     Creating the database
@@ -31,20 +30,6 @@ def setup_db():
             db.session.execute(sql)
         db.session.commit()
 
-<<<<<<< HEAD
-  print("Creating database")
-  
-  # Read schema from schema.sql file
-  schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql')
-  with open(schema_path, 'r') as f:
-     schema_sql = f.read()
-  
-  raw = db.engine.raw_connection()
-  try:
-    raw.cursor().executescript(schema_sql)
-  finally:
-    raw.close()
-=======
     print("Creating database")
 
     schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql')
@@ -56,7 +41,6 @@ def setup_db():
         raw.cursor().executescript(schema_sql)
     finally:
         raw.close()
->>>>>>> e7576bd9bd039b2e98e62ee625f0e9cc48b8ee8f
 
 
 if __name__ == "__main__":
