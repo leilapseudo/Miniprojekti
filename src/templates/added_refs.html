@@ -1,13 +1,17 @@
 <div>
     {% if refs|length == 0 %}
     <h3>No references have been added yet</h3>
-    {% elif refs|length > 0 %}
-    <ul>
-        {% for item in refs%}
-        <li>
-            {{item}}
-        </li>
+    {% elif refs | length > 0 %}
+      <form method="get" action="/edit">
+        <ul>
+        {% for item in refs %}
+          <li>
+            <input type="radio" name="id" value="{{ item.viite_id }}" required>
+            {{ item }}
+          </li>
         {% endfor %}
-    </ul>
+        </ul>
+        <button type="submit">Edit selected</button>
+      </form>
     {% endif %}
 </div>
