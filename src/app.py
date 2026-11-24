@@ -24,22 +24,22 @@ def new_reference():
     refs.append(ref)
     return redirect("/")
 
-@app.route("/references/<int:id>", methods=["GET", "POST"])
-def update_reference(id):
+@app.route("/references/<int:book_id>", methods=["GET", "POST"])
+def update_reference(book_id):
     if request.method == "GET":
-        book = reference_repository.get_book(id)
+        book = reference_repository.get_book(book_id)
         if book is None:
             abort(404)
         return render_template("edit_reference.html", reference=Book(), book=book)
 
     data = request.form.to_dict()
-    reference_repository.update_book(id, data)
+    reference_repository.update_book(book_id, data)
     return redirect("/")
 
 @app.route("/edit")
 def edit_redirect():
-    id = request.args.get("id")
-    if id is None:
+    book_id = request.args.get("id")
+    if book_id is None:
         return redirect("/")
     return redirect(f"/references/{id}")
 
