@@ -41,7 +41,7 @@ def edit_redirect():
     book_id = request.args.get("id")
     if book_id is None:
         return redirect("/")
-    return redirect(f"/references/{id}")
+    return redirect(f"/references/{book_id}")
 
 @app.route("/references/<int:id>", methods=["DELETE"])
 def delete_reference():
