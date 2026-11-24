@@ -69,6 +69,6 @@ def update_book(book_id, reference):
     db.session.commit()
 
 def delete_book(book_id):
-    query = text(f"DELETE FROM books WHERE viite_id = :viite_id")
-    db.session.execute(query, {"viite_id": book_id})
+    db.session.execute(text("DELETE FROM books WHERE viite_id = :viite_id"), {"viite_id": book_id})
+    db.session.execute(text("DELETE FROM refs WHERE id = :viite_id"), {"viite_id": book_id})
     db.session.commit()

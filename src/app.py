@@ -50,7 +50,6 @@ def delete_reference():
         return redirect("/")
     reference_repository.delete_book(book_id)
     return redirect("/")
-    
 
 # testausta varten oleva reitti
 if test_env:
