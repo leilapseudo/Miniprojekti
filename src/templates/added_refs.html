@@ -2,7 +2,7 @@
     {% if refs|length == 0 %}
     <h3>No references have been added yet</h3>
     {% elif refs | length > 0 %}
-      <form method="get" action="/edit">
+      <form>
         <ul>
         {% for item in refs %}
           <li>
@@ -11,7 +11,8 @@
           </li>
         {% endfor %}
         </ul>
-        <button type="submit">Edit selected</button>
+        <button type="submit" formaction="/edit" formmethod="get">Edit selected</button>
+        <button type="submit" formaction="/delete" formmethod="post">Delete selected</button>
       </form>
     {% endif %}
 </div>

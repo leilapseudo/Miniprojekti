@@ -43,11 +43,14 @@ def edit_redirect():
         return redirect("/")
     return redirect(f"/references/{book_id}")
 
-@app.route("/references/<int:id>", methods=["DELETE"])
+@app.route("/delete", methods=["POST"])
 def delete_reference():
-    pass
-
-
+    book_id = request.form.get("id", type=int)
+    if book_id is None:
+        return redirect("/")
+    reference_repository.delete_book(book_id)
+    return redirect("/")
+    
 
 # testausta varten oleva reitti
 if test_env:
