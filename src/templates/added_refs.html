@@ -3,12 +3,14 @@
     <h3>No references have been added yet</h3>
     {% elif refs | length > 0 %}
       <form method="get" action="/edit">
+        <ul>
         {% for item in refs %}
-          <p>
+          <li>
             <input type="radio" name="id" value="{{ item.viite_id }}" required>
             {{ item }}
-          </p>
+          </li>
         {% endfor %}
+        </ul>
         <button type="submit">Edit selected</button>
       </form>
     {% endif %}
