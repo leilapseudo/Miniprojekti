@@ -4,7 +4,7 @@ from config import db, app
 
 
 def reset_db():
-    print("Clearing contents from table references")
+    setup_db()
 
 
 def tables():
