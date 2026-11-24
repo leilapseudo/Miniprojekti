@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify, redirect
+from flask import render_template, request, jsonify, redirect, abort
 from entities.reference import Book
 from db_helper import reset_db
 from config import app, test_env
@@ -24,19 +24,24 @@ def new_reference():
     refs.append(ref)
     return redirect("/")
 
-@app.route("/references/<int:id>", methods=["GET", "PUT"])
+@app.route("/references/<int:id>", methods=["GET", "POST"])
 def update_reference(id):
     if request.method == "GET":
         book = reference_repository.get_book(id)
         if book is None:
             abort(404)
-        return render_template("edit_book.html", book=book)
+        return render_template("edit_reference.html", reference=Book(), book=book)
 
-    data = request.get_json(silent=True)
-    if not data:
-        abort(400)
+    data = request.form.to_dict()
     reference_repository.update_book(id, data)
-    return "", 204
+    return redirect("/")
+
+@app.route("/edit")
+def edit_redirect():
+    id = request.args.get("id")
+    if id is None:
+        return redirect("/")
+    return redirect(f"/references/{id}")
 
 @app.route("/references/<int:id>", methods=["DELETE"])
 def delete_reference():

@@ -57,13 +57,14 @@ def add_book(reference, book_id):
 def update_book(book_id, reference):
     book = Book()
     allowed = book.fields["required"] + book.fields["optional"] + book.fields["non_standard"]
-    if not all(field in allowed_fields for field in reference.keys()):
+    if not all(field in allowed for field in reference.keys()):
        raise ValueError("Invalid fields")
 
     values = dict(reference.items())
     values["viite_id"] = book_id
-    assignments = ", ".join(f"{column} = : {column}" for column in columns)
-    query = test(f"UPDATE books SET {assignments} WHERE viite_id = :viite_id")
+    columns = list(reference.keys())
+    assignments = ", ".join(f"{column} = :{column}" for column in columns)
+    query = text(f"UPDATE books SET {assignments} WHERE viite_id = :viite_id")
     db.session.execute(query, values)
     db.session.commit()
 
