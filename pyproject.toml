@@ -29,7 +29,7 @@ package = false
 
 [tool.pylint.main]
 source-roots = ["src"]
-ignore = ["story_tests"]
+ignore = ["user_story_tests"]
 
 [tool.pylint.format]
 max-line-length = 100

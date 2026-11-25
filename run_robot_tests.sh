@@ -20,7 +20,7 @@ done
 echo "Flask server is ready"
 
 # suoritetaan testit
-uv run robot --variable HEADLESS:true src/story_tests
+uv run robot --variable HEADLESS:true src/user_story_tests
 
 status=$?
 
