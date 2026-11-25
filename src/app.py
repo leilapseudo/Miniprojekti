@@ -9,9 +9,7 @@ refs = []
 @app.route("/", methods=['GET', "POST"])
 def index():
     book_refs = reference_repository.get_books()
-    print(book_refs)
     book = Book()
-    print(book.fields["required"])
     return render_template("index.html", reference = book, refs = book_refs)
 
 @app.route("/references", methods=["POST"])

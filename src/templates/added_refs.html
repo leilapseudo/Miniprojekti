@@ -7,7 +7,12 @@
         {% for item in refs %}
           <li>
             <input type="radio" name="id" value="{{ item.viite_id }}" required>
-            {{ item }}
+              {% for col in item %}
+                {% if item._fields[loop.index0] != "viite_id" %}
+                  <b>{{item._fields[loop.index0]}}: </b> <i>{{col}}</i>
+                {% endif %}
+              {% endfor %}
+
           </li>
         {% endfor %}
         </ul>

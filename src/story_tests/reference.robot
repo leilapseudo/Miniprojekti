@@ -47,3 +47,17 @@ Delete A Book
     Check Checkbox    li:has-text("Clean Code") >> input[name="id"]
     Get Checkbox State    li:has-text("Clean Code") >> input[name="id"]    ==    checked
     Click  text=Delete selected
+
+Edit A Book
+    Go To  ${HOME_URL}
+    Fill Text  input[name="author"]  Robert
+    Fill Text  input[name="editor"]  Prentice Hall
+    Fill Text  input[name="title"]  Clean Code
+    Fill Text  input[name="publisher"]  Pearson
+    Fill Text  input[name="year"]  2008
+    Click  text=Add a reference
+    Check Checkbox    li:has-text("Clean Code") >> input[name="id"]
+    Click  text=Edit selected
+    Fill Text  input[name="author"]  muokattu
+    Click  text=Save changes
+    Get Text  ul  contains  muokattu
