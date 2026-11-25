@@ -1,6 +1,8 @@
 <div>
   <h1>Add a {{reference.type}} reference</h1>
-  <form method="post">
+
+  <form method="post" action="/references">
+
     <h3>Mandatory fields</h3>
     {% for item in reference.fields["required"] %}
         <div>
@@ -10,21 +12,23 @@
             </label>
         </div>
     {% endfor %}
+
     <h3>Optional fields</h3>
     {% for item in reference.fields["optional"] %}
         <div>
             <label name="{{item}}" for="{{item}}">
                 {{item}}:
-                <input name="{{item}}" id="{{item}}" required>
+                <input name="{{item}}" id="{{item}}">
             </label>
         </div>
     {% endfor %}
+
     <h3>Non-standard fields</h3>
     {% for item in reference.fields["non_standard"] %}
         <div>
             <label name="{{item}}" for="{{item}}">
                 {{item}}:
-                <input name="{{item}}" id="{{item}}" required>
+                <input name="{{item}}" id="{{item}}">
             </label>
         </div>
     {% endfor %}

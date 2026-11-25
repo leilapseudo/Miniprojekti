@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Edit reference</h2>
+<form method="post" action="/references/{{ book.viite_id }}">
+  {% for item in reference.fields["required"] %}
+    <label>{{ item }}:
+      <input type="text" name="{{ item }}" value="{{ book[item] or '' }}">
+    </label><br>
+  {% endfor %}
+  {% for item in reference.fields["optional"] %}
+    <label>{{ item }}:
+      <input type="text" name="{{ item }}" value="{{ book[item] or '' }}">
+    </label><br>
+  {% endfor %}
+  <button type="submit">Save changes</button>
+</form>
+{% endblock %}

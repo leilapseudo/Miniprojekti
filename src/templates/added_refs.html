@@ -1,0 +1,23 @@
+<div>
+    {% if refs|length == 0 %}
+    <h3>No references have been added yet</h3>
+    {% elif refs | length > 0 %}
+      <form>
+        <ul>
+        {% for item in refs %}
+          <li>
+            <input type="radio" name="id" value="{{ item.viite_id }}" required>
+              {% for col in item %}
+                {% if item._fields[loop.index0] != "viite_id" %}
+                  <b>{{item._fields[loop.index0]}}: </b> <i>{{col}}</i>
+                {% endif %}
+              {% endfor %}
+
+          </li>
+        {% endfor %}
+        </ul>
+        <button type="submit" formaction="/edit" formmethod="get">Edit selected</button>
+        <button type="submit" formaction="/delete" formmethod="post">Delete selected</button>
+      </form>
+    {% endif %}
+</div>
