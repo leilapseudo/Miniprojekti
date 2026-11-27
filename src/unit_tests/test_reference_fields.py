@@ -1,17 +1,17 @@
-from entities.reference import Reference, Book
+from entities.reference import Reference, Book, ReferenceBuilder
 
 
-def test_reference_stores_given_fields():
-    ref = Reference(["author"], ["note"], ["doi"], "misc")
+def test_builder_builds_correct():
+    book = ReferenceBuilder().build_reference("book")
+    inproceedings = ReferenceBuilder().build_reference("inproceedings")
+    article = ReferenceBuilder().build_reference("article")
+    types = (book.type, inproceedings.type, article.type)
+    assert types == ("book", "inproceedings", "article")
 
-    assert ref.type == "misc"
-    assert ref.required == ["author"]
-    assert ref.optional == ["note"]
-    assert ref.non_standard == ["doi"]
 
 
 def test_reference_fields_dict_groups_fields():
-    ref = Reference(["a"], ["b"], ["c"], "misc")
+    ref = Reference(["a"], ["b"], ["c"], "misc", "book")
 
     assert ref.fields == {
         "required": ["a"],

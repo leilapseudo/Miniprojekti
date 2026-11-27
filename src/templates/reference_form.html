@@ -1,5 +1,10 @@
 <div>
-  <h1>Add a {{reference.type}} reference</h1>
+  <h1>Add a {{reference.type}} reference or something else</h1>
+  <form action="/" method="GET">
+    <button type="submit" name="choice"  value="book">Book</button>
+    <button type="submit" name="choice"  value="article">Article</button>
+    <button type="submit" name="choice"  value="inproceedings">Inproceedings</button>
+  </form>
 
   <form method="post" action="/references">
 
@@ -32,7 +37,8 @@
             </label>
         </div>
     {% endfor %}
-    
+    <input type="hidden" name="type" value="{{reference.type}}">
+
     <button>Add a reference</button>
   </form>
 </div>

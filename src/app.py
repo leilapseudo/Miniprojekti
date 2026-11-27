@@ -1,34 +1,36 @@
+import re
 from flask import render_template, request, jsonify, redirect, abort
-from entities.reference import Book
+from entities.reference import ReferenceBuilder
 from db_helper import reset_db
 from config import app, test_env
 from repositories import reference_repository
 
-refs = []
 
 @app.route("/", methods=['GET', "POST"])
 def index():
+    url_pattern_to_match = "book|article|inproceedings"
+    match = re.search(url_pattern_to_match, request.url)
+    form_type = "book"
+    if match:
+        form_type = match.group()
     book_refs = reference_repository.get_books()
-    book = Book()
+    book = ReferenceBuilder().build_reference(form_type)
     return render_template("index.html", reference = book, refs = book_refs)
 
 @app.route("/references", methods=["POST"])
 def new_reference():
     reference_repository.add_reference(request.form)
-    ref = ""
-    for item in request.form.items():
-        ref = ref + item[0] + ": " + item[1] + ",  "
-
-    refs.append(ref)
     return redirect("/")
 
 @app.route("/references/<int:book_id>", methods=["GET", "POST"])
 def update_reference(book_id):
     if request.method == "GET":
-        book = reference_repository.get_book(book_id)
-        if book is None:
+        print(request.args.to_dict())
+        reference = reference_repository.get_book(book_id)
+        print("RE", reference)
+        if reference is None:
             abort(404)
-        return render_template("edit_reference.html", reference=Book(), book=book)
+        return render_template("edit_reference.html", reference=reference, id=book_id)
 
     data = request.form.to_dict()
     reference_repository.update_book(book_id, data)
@@ -55,3 +57,8 @@ if test_env:
     def reset_database():
         reset_db()
         return jsonify({ 'message': "db reset" })
+
+if test_env:
+    @app.route("/visualize_db")
+    def visualize_db():
+        pass

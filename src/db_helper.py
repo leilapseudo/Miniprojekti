@@ -17,6 +17,8 @@ def tables():
     result = db.session.execute(sql)
     return [row[0] for row in result.fetchall()]
 
+
+
 def setup_db():
     """
     Creating the database
